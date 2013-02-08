@@ -1,0 +1,18 @@
+<div style="overflow: hidden">
+
+    {% for dir in dirs %}
+        {% include 'dir.twig' %}
+    {% endfor %}
+
+    <div id="fm_uploadDir">
+
+        {% for file in files %}
+            {% include 'file.twig' %}
+        {% endfor %}
+    </div>
+
+</div>
+
+<script>
+    $("#fm_total").html('{{ totalsize }}');
+</script>

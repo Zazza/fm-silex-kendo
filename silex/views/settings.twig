@@ -1,0 +1,88 @@
+<div id="tabstrip">
+<ul>
+<li class="k-state-active">Settings</li>
+<li>About</li>
+</ul>
+<div>
+<form method="post" action="settings">
+<div style="overflow: hidden; margin-bottom: 3px;">Style:
+<span style="float: right;">
+<select name="param[theme]">
+<option {% if param.theme == "black" %}selected{% endif %}>black</option>
+<option {% if param.theme == "blueopal" %}selected{% endif %}>blueopal</option>
+<option {% if param.theme == "bootstrap" %}selected{% endif %}>bootstrap</option>
+<option {% if param.theme == "default" %}selected{% endif %}>default</option>
+<option {% if param.theme == "highcontrast" %}selected{% endif %}>highcontrast</option>
+<option {% if param.theme == "metroblack" %}selected{% endif %}>metroblack</option>
+<option {% if param.theme == "metro" %}selected{% endif %}>metro</option>
+<option {% if param.theme == "moonlight" %}selected{% endif %}>moonlight</option>
+<option {% if param.theme == "rtl" %}selected{% endif %}>rtl</option>
+<option {% if param.theme == "silver" %}selected{% endif %}>silver</option>
+<option {% if param.theme == "uniform" %}selected{% endif %}>uniform</option>
+</select>
+</span>
+</div>
+<div style="overflow: hidden; margin-bottom: 3px;">
+Preview width: <span style="float: right;"><input type="text" name="param[pre_width]" value="{{ param.pre_width }}"></span>
+</div>
+    <div style="overflow: hidden; margin-bottom: 3px;">
+Preview height: <span style="float: right;"><input type="text" name="param[pre_height]" value="{{ param.pre_height }}"></span>
+</div>
+<div style="overflow: hidden; margin-bottom: 3px;">
+Preview quality: <span style="float: right;"><input type="text" name="param[quality]" value="{{ param.quality }}"></span>
+</div>
+<div style="overflow: hidden; margin-bottom: 3px;">
+Preview background: <span style="float: right;"><input type="text" name="param[rgb]" value="{{ param.rgb }}"></span>
+</div>
+<div style="overflow: hidden; margin-bottom: 3px;">
+<a style="cursor: pointer;" class="k-button" onclick="$.ajax({type: 'POST', url: 'clear', success: function() { location.reload(); }});">Clear session</a>
+</div>
+<div style="overflow: hidden; margin-top: 10px;">
+<input type="submit" name="submit" value="Save" class="k-button" style="float: right;" />
+</div>
+</form>
+</div>
+
+<div>
+<div>
+<div style="padding: 10px 0 10px 40px;">
+<a href="http://tushkan.com"><img src="img/logo_big.png" style="height: 50px;" /></a>
+</div>
+
+<div style="height: 115px; overflow-y: scroll; overflow-x: hidden; border: 1px solid #AAA; padding: 2px;">
+<b>MIT License</b>
+<pre>
+Copyright (C) 2013 Dmitry Samotoy
+
+Permission is hereby granted, free of charge,
+to any person obtaining a copy of this
+software and associated documentation files
+(the "Software"), to deal in the Software
+without restriction, including without
+limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to
+permit persons to whom the Software is
+furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission
+notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre>
+</div>
+
+</div>
+</div>
+</div>

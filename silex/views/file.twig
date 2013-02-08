@@ -1,0 +1,22 @@
+{% if view =="icon" %}
+    <div title="{{ file.name }}" class="dfile fm_file" style="text-align: center; cursor: pointer">
+        <div class="fm_unsellabel" id="{{ file.name }}">
+            <a class="fm_pre"><img src="{{ file.ico }}" style="height: 50px;" alt="[FILE]" /></a>
+            <div class="fname">{{ file.shortname }}</div>
+            <div class="fullname" style="display: none">{{ file.name }}</div>
+
+            <div style="color: #777">{{ file.size }}</div>
+        </div>
+    </div>
+{% else %}
+    <div title="{{ file.name }}" class="dfile fm_file_li" style="cursor: pointer">
+        <div class="fm_unsellabel" id="{{ file.name }}">
+            <div style="float: left; padding-right: 5px;"><a class="fm_pre"><img src="{{ file.ico }}" style="height: 15px;" alt="[FILE]" /></a></div>
+            <div style="float: left;" class="fname">{{ file.shortname }}</div>
+            <div style="float: left;" class="fullname" style="display: none">{{ file.name }}</div>
+
+            <div style="float: right;" style="color: #777">{{ file.date }}</div>
+            <div style="float: right; padding-right: 5px;" style="color: #777">{{ file.size }}</div>
+        </div>
+    </div>
+{% endif %}
