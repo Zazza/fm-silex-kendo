@@ -7,13 +7,19 @@ File manager - Silex + Kendo UI
 
 git clone https://github.com/Zazza/fm-silex-kendo.git
 
-cd silex/
+cd fm-silex-kendo/silex/
 
 curl -s https://getcomposer.org/installer | php
 
 php composer.phar install
 
 cd ..
+
+mkdir upload
+
+mkdir upload/_thumb
+
+chown -R www-data:www-data upload 
 
 chmod 770 update
 

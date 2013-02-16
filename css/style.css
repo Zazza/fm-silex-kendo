@@ -1,0 +1,34 @@
+html, body {font-family: Verdana, sans-serif; font-size: 11px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal;}
+
+#treeview .k-sprite {background-image: url("../img/coloricons-sprite.png");}
+
+.rootfolder { background-position: 0 0; }
+.folder { background-position: 0 -16px; }
+
+.buf_folder, .buf_file {background-color: white; padding: 1px 0 1px 20px;}
+
+.buf_folder {background: url("../img/treeview/folder.gif") no-repeat scroll 0 0 transparent;}
+.buf_file {background: url("../img/treeview/file.gif") no-repeat scroll 0 0 transparent;}
+
+#fm_sel, #fm_unsel {cursor: pointer; padding: 4px 8px;}
+
+/* Menu */
+#newDirWin {background: url("../img/menu/new.png") no-repeat scroll 2px 5px transparent; padding-left: 12px;}
+#load {background: url("../img/menu/drive-upload.png") no-repeat scroll 2px 5px transparent; padding-left: 12px;}
+#remove {background: url("../img/menu/delete.png") no-repeat scroll 2px 5px transparent; padding-left: 12px;}
+#copy {background: url("../img/menu/copy.png") no-repeat scroll 2px 5px transparent; padding-left: 12px;}
+#past {background: url("../img/menu/past.png") no-repeat scroll 2px 5px transparent; padding-left: 12px;}
+#settings {background: url("../img/menu/gear.png") no-repeat scroll 2px 5px transparent; padding-left: 12px;}
+
+/* FM */
+.fname, .fullname {line-height: 20px;}
+
+.fm_file, .fm_dirs, .fm_dirs_up {float: left; width: 130px; height: 115px; padding: 5px;}
+
+.fm_file_li, .fm_dirs_li, .fm_dirs_up_li {text-align: left; height: 20px; padding: 2px; overflow: hidden;}
+
+.fm_unsellabel, .fm_sellabel {padding: 2px; overflow: hidden;}
+
+.fm_sellabel {background-color: #C1DCFC; border: 1px solid #7DA2CE; border-radius: 2px 2px 2px 2px;}
+
+.fm_unsellabel {background-color: transparent;}

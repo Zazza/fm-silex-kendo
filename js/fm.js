@@ -12,8 +12,10 @@ $(document).ready(function() {
     $("#settings").click(function(){
         $("#settingsWin").data("kendoWindow").open();
     });
-    $("#settingsWin_wnd_title").html("<img src='img/menu/gear.png' style='height: 16px;' /> <span style='position: relative; top: -2px;'>Ostora FM Light</span>");
+    $("#settingsWin_wnd_title").html("<img src='img/menu/gear.png' style='height: 16px;' /> <span style='position: relative; top: -2px;'>Settings</span>");
     $("#settingsWin").data("kendoWindow").center();
+
+    $("#fileRes").kendoWindow({title: "URL:", resizable: false });
 
     $("#tabstrip").kendoTabStrip({
         animation:	{
@@ -39,12 +41,14 @@ $(document).ready(function() {
         }
     });
 
+    var isResizing = false;
     if (!$("#window").data("kendoWindow")) {
         $("#window").kendoWindow({
             width: $("#wwidth").val(),
             minWidth: 700,
             height: $("#wheight").val(),
             resize: function() {
+                isResizing = true;
                 var splitter = $("#splitter").data("kendoSplitter");
                 splitter.trigger("resize");
                 $("#splitter").height($("#window").height() - 32);
@@ -52,10 +56,13 @@ $(document).ready(function() {
         });
     }
     $("#window").data("kendoWindow").center();
-    $("#window_wnd_title").html("<img src='favicon.png' style='height: 16px;' /> <span style='position: relative; top: -2px;'>Ostora FM Light</span>");
+    $("#window_wnd_title").html("<img src='favicon.png' style='height: 16px;' /> <span style='position: relative; top: -2px;'>File Manager</span>");
 
     $('body').on('mouseup', '.k-window', function() {
-        $.ajax({ type: "POST", url: "resize", data: "&height=" + $("#window").height() + "&width=" + $("#window").width() });
+        if(isResizing){
+            $.ajax({ type: "POST", url: "resize", data: "&height=" + $("#window").height() + "&width=" + $("#window").width() });
+            isResizing = false;
+        }
     });
 
     $("#splitter").height($("#window").height() - 32);
@@ -95,6 +102,21 @@ $(document).ready(function() {
 
             var splitter = $("#splitter").data("kendoSplitter");
             splitter.ajaxRequest("#structure", "chdir", { id: data.id });
+        },
+        animation: {
+            expand: {
+                duration: 0,
+                hide: false,
+                show: false
+            },
+            collapse: {
+                duration: 0,
+                show: false
+            }
+        },
+        expand: function(e) {
+            var dataItem = this.dataItem(e.node);
+            dataItem.loaded(false);
         }
     });
 
@@ -104,22 +126,31 @@ $(document).ready(function() {
 
     function createDirDialog() {
         var fname = prompt("Folder name:", "");
-
         if (fname != null) {
+
+            var treeview = $("#treeview").data("kendoTreeView");
+            var selectNode = treeview.select();
+
+            if ($(selectNode).parent().find(".k-icon").length) {
+                if ($(selectNode).parent().find(".k-minus").length) {
+                    treeview.collapse(selectNode);
+                }
+            }
+
             var data = "name=" + fname;
             $.ajax({
                 type: "POST",
                 url: "create",
                 data: data,
-                dataType: "JSON",
                 success: function(res) {
-                    var treeview = $("#treeview").data("kendoTreeView");
-                    $.each(res, function(key, value){
-                        if (key == "tree")
-                            treeview.append({text: value, spriteCssClass: 'folder'}, treeview.select());
-                        if (key == "structure")
-                            $("#fm_uploadDir").append(value);
-                    })
+                    treeview.dataItem(selectNode).load();
+
+                    if ($(selectNode).parent().find(".k-icon").length) {
+                        treeview.expand(selectNode);
+                    }
+
+                    // added folder to right div splitter
+                    $("#fm_uploadDir").append(res);
                 },
                 error: function(res) {
                     alert(res.responseText);
@@ -147,8 +178,10 @@ $(document).ready(function() {
     });
 
     $("#remove").click(function(){
+        var treeview = $("#treeview").data("kendoTreeView");
+
         if (confirm("Remove?")) {
-            $(".ddir > div").each(function(value) {
+            $(".ddir > div").each(function() {
                 if ($(this).attr("class") == "fm_sellabel") {
                     var fname = $(this).attr("id");
                     $.ajax({
@@ -156,6 +189,10 @@ $(document).ready(function() {
                         url: 'rmdirs',
                         data: "dir=" + encodeURIComponent(fname),
                         success: function(res) {
+                            var dataSource = treeview.dataSource;
+                            var dataItem = dataSource.get(res);
+                            treeview.remove(treeview.findByUid(dataItem.uid));
+
                             $(".fm_sellabel").parent().fadeOut("fast");
                             $(".fm_sellabel").parent().removeClass("fm_sellabel");
                         }
@@ -163,7 +200,7 @@ $(document).ready(function() {
                 }
             });
 
-            $(".dfile > div").each(function(value) {
+            $(".dfile > div").each(function() {
                 if ($(this).attr("class") == "fm_sellabel") {
                     var fname = $(this).attr("id");
                     $.ajax({
@@ -194,12 +231,6 @@ $(document).ready(function() {
         $(".dfile > div").each(function(value) {
             if ($(this).attr("class") == "fm_sellabel") {
                 selfiles += "&file[]=" + encodeURIComponent($(this).attr("id"));
-            }
-        });
-
-        $(".ddir > div").each(function(value) {
-            if ($(this).attr("class") == "fm_sellabel") {
-                selfiles += "&dir[]=" + encodeURIComponent($(this).attr("id"));
             }
         });
 
@@ -264,5 +295,12 @@ $(document).ready(function() {
     $(".ddir").live("dblclick", function(){
         var splitter = $("#splitter").data("kendoSplitter");
         splitter.ajaxRequest("#structure", "chdir", { id: $(this).attr("id") });
+    });
+
+    $(".dfile").live("dblclick", function(){
+        $("#fileRes").data("kendoWindow").open();
+        $("#fileRes").data("kendoWindow").center();
+
+        $("#fullurl").val(location.href + $("#cur_dir").val() + "/" + $(this).attr("title"));
     });
 });

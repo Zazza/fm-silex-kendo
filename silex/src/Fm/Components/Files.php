@@ -4,12 +4,14 @@ namespace Fm\Components;
 class Files extends Base {
     private $_files = array();
     private $_dirs = array();
-    private $_path = "";
+    private $_path = null;
     private $_totalsize = 0;
+    private $_pre_img = null;
+    private $_ico = null;
 
     // ICO MIME TYPE
     private $_MIME = array(
-        array("name" => "img", "ico" => "preview", "ext" => array("jpg", "jpeg", "gif", "png", "bmp")),
+        array("name" => "img", "ico" => "image.png", "ext" => array("jpg", "jpeg", "gif", "png", "bmp")),
         array("name" => "doc", "ico" => "msword.png", "ext" => array("doc", "docx", "rtf", "oft")),
         array("name" => "pdf", "ico" => "pdf.png", "ext" =>  array("pdf", "djvu")),
         array("name" => "txt", "ico" => "text.png", "ext" =>  array("txt")),
@@ -26,18 +28,23 @@ class Files extends Base {
 
         for($i=0; $i<count($this->_MIME); $i++) {
             if (in_array(mb_strtolower($ext), $this->_MIME[$i]["ext"])) {
-                $ico = $this->_MIME[$i]["ico"];
-                if ($ico == "preview") {
-// PATH
-                    $ico = "upload/_thumb/" . $fname;
-                    if (!is_readable($ico)) { $ico = "img/ftypes/image.png"; }
+
+                $this->_ico = "img/ftypes/" . $this->_MIME[$i]["ico"];
+
+                if ($this->_MIME[$i]["ico"] == "image.png") {
+                    $pre_img = "upload/_thumb/" . md5($fname);
+                    if (is_readable($pre_img)) {
+                        $this->_pre_img = $pre_img;
+                    } else {
+                        $this->_pre_img = $this->_ico;
+                    }
                 } else {
-                    $ico = "img/ftypes/" . $ico;
+                    $this->_pre_img = $this->_ico;
                 }
             }
         }
 
-        return $ico;
+        return true;
     }
     // END ICO MIME TYPE
 
@@ -88,6 +95,7 @@ class Files extends Base {
                             }
                         }
 
+                        $files[$i]["id"] = md5($path);
                         $files[$i]["name"] = $file;
                         if (mb_strlen($file) > 20) {
                             $files[$i]["shortname"] = mb_substr($file, 0, 10) . ".." . mb_substr($file, mb_strrpos($file, ".")-1, mb_strlen($file)-mb_strrpos($file, ".")+1);
@@ -96,7 +104,10 @@ class Files extends Base {
                         }
 
                         $ext = mb_substr($files[$i]["name"], mb_strrpos($files[$i]["name"], ".") + 1);
-                        $files[$i]["ico"] = $this->setIcon($ext, $file);
+                        $this->setIcon($ext, $path);
+
+                        $files[$i]["ico"] = $this->_ico;
+                        $files[$i]["pre_img"] = $this->_pre_img;
 
                         $size = filesize($path);
                         $total += $size;
@@ -204,6 +215,7 @@ class Files extends Base {
 
     public function rmFiles($file) {
         if (unlink($file)) {
+            unlink($this->_app['upload'] . "/_thumb/" .md5($file));
             return true;
         } else {
             return false;
@@ -225,6 +237,7 @@ class Files extends Base {
         $path = $folder . "/" . $file;
         if(is_file($path)) {
             $array["name"] = $file;
+            $array["id"] = md5($path);
             if (mb_strlen($file) > 20) {
                 $array["shortname"] = mb_substr($file, 0, 10) . ".." . mb_substr($file, mb_strrpos($file, ".")-1, mb_strlen($file)-mb_strrpos($file, ".")+1);
             } else {
@@ -232,7 +245,11 @@ class Files extends Base {
             }
 
             $ext = mb_substr($array["name"], mb_strrpos($array["name"], ".") + 1);
-            $array["ico"] = $this->setIcon($ext, $file);
+
+            $this->setIcon($ext, $path);
+
+            $array["ico"]  = $this->_ico;
+            $array["pre_img"] = $this->_pre_img;
 
             $size = filesize($path);
             if (($size / 1024) > 1) { $size = round($size / 1024, 2) . " Kb"; } else { $size = round($size, 2) . " Б"; };
@@ -249,11 +266,11 @@ class Files extends Base {
         return filemtime($file);
     }
 
-    public function mkdir($dir) {
-        if (mkdir($dir)) {
+    public function mkdir($path, $name) {
+        if (mkdir($path . "/" . $name)) {
             return true;
         } else {
-            $this->_error = "Create directory error: " . $dir;
+            $this->_error = "Create directory error: [1]=" . $path . "/" . $name;
 
             return false;
         }
@@ -261,29 +278,23 @@ class Files extends Base {
 
     public function past($source, $target) {
         foreach($source as $part) {
-            if (is_dir($part["path"])) {
-                if (!rename($part["path"], $target."/".$part["name"])) {
-                    $this->_error = "Move dir impossible, from: ".$part["path"].' to: '.$target."/".$part["name"];
-                    return false;
-                }
-            }
+            if (copy($part["path"], $target."/".$part["name"])) {
 
-            if (is_file($part["path"])) {
-                if (copy($part["path"], $target."/".$part["name"])) {
-                    if (is_file($part["path"])) {
-                        if (!unlink($part["path"])) {
-                            $this->_error = "Error remove directory: " . $part["path"];
-                        }
+                rename($this->_app['upload'] . "/_thumb/" . $part["id"], $this->_app['upload'] . "/_thumb/" . md5($target."/".$part["name"]));
+
+                if (is_file($part["path"])) {
+                    if (!unlink($part["path"])) {
+                        $this->_error = "Error remove directory: " . $part["path"];
                     }
-                    if (is_dir($part["path"])) {
-                        if (!rmdir($part["path"])) {
-                            $this->_error = "Error remove file: " . $part["path"];
-                        }
-                    }
-                } else {
-                    $this->_error = "Past files impossible, from: ".$part["path"].' to: '.$target."/".$part["name"];
-                    return false;
                 }
+                if (is_dir($part["path"])) {
+                    if (!rmdir($part["path"])) {
+                        $this->_error = "Error remove file: " . $part["path"];
+                    }
+                }
+            } else {
+                $this->_error = "Past files impossible, from: ".$part["path"].' to: '.$target."/".$part["name"];
+                return false;
             }
         }
 

@@ -34,11 +34,11 @@ class Save extends Base {
         $isrc = $icfunc($src);
         $idest = imagecreatetruecolor($width, $height);
 
-        imagefill($idest, 0, 0, $this->_app["param"]["rgb"]);
+        imagefill($idest, 0, 0, $this->_app["conf"]["rgb"]);
         imagecopyresampled($idest, $isrc, $new_left, $new_top, 0, 0,
             $new_width, $new_height, $size[0], $size[1]);
 
-        imagejpeg($idest, $dest, $this->_app["param"]["quality"]);
+        imagejpeg($idest, $dest, $this->_app["conf"]["quality"]);
 
         imagedestroy($isrc);
         imagedestroy($idest);
@@ -67,7 +67,7 @@ class Save extends Base {
 
         if ($this->save()) {
             if ( (strtolower($this->_ext) == "gif") or (strtolower($this->_ext) == "png") or (strtolower($this->_ext) == "jpg") or (strtolower($this->_ext) == "jpeg") ) {
-                $this->_img_resize($uploadDirectory . "/" . $this->_filename, $_thumbPath . $this->_filename, $this->_app["param"]["pre_width"], $this->_app["param"]["pre_height"]);
+                $this->_img_resize($uploadDirectory . "/" . $this->_filename, $_thumbPath . md5($uploadDirectory . "/" . $this->_filename), $this->_app["conf"]["pre_width"], $this->_app["conf"]["pre_height"]);
             };
 
             return true;

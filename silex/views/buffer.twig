@@ -1,11 +1,7 @@
-{% if dir or file %}
+{% if buffer %}
 <li class="k-item k-state-default"><span class="k-link" onclick="$.ajax({type: 'POST', url: 'clearbuffer'}); $('#buffer').html(''); $('#buffer_count').html('(0)');">Clear</span></li>
 {% endif %}
 
-{% for part in dir %}
-<li class="k-item k-state-default"><span class="k-link"><span class="buf_folder">{{ part.name }}</span></span></li>
-{% endfor %}
-
-{% for part in file %}
+{% for part in buffer %}
 <li class="k-item k-state-default"><span class="k-link"><span class="buf_file">{{ part.name }}</span></span></li>
 {% endfor %}
