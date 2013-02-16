@@ -95,7 +95,7 @@ $(document).ready(function() {
         schema: {}
     });
 
-    $("#treeview").kendoTreeView({
+   $("#treeview").kendoTreeView({
         dataSource: fs,
         select: function(e) {
             var data = $('#treeview').data('kendoTreeView').dataItem(e.node);
@@ -138,11 +138,8 @@ $(document).ready(function() {
             }
 
             var data = "name=" + fname;
-            $.ajax({
-                type: "POST",
-                url: "create",
-                data: data,
-                success: function(res) {
+            $.ajax({ type: "POST", url: "create", data: data })
+                .done(function(res) {
                     treeview.dataItem(selectNode).load();
 
                     if ($(selectNode).parent().find(".k-icon").length) {
@@ -151,29 +148,26 @@ $(document).ready(function() {
 
                     // added folder to right div splitter
                     $("#fm_uploadDir").append(res);
-                },
-                error: function(res) {
-                    alert(res.responseText);
-                }
-            });
+                })
+                .fail(function(res) { alert(res.responseText); })
         }
 
         return true;
     }
 
-    $("#fm_sel").live("click", function() {
+    $("#splitter").on("click", "#fm_sel", function() {
         $(".fm_unsellabel").removeClass("fm_unsellabel").addClass("fm_sellabel");
     });
 
-    $("#fm_unsel").live("click", function() {
+    $("#splitter").on("click", "#fm_unsel", function() {
         $(".fm_sellabel").removeClass("fm_sellabel").addClass("fm_unsellabel");
     });
 
-    $(".fm_unsellabel").live("click", function(){
+    $("#structure").on("click", ".fm_unsellabel", function(){
         $(this).removeClass("fm_unsellabel").addClass("fm_sellabel");
     });
 
-    $(".fm_sellabel").live("click", function(){
+    $("#structure").on("click", ".fm_sellabel", function(){
         $(this).removeClass("fm_sellabel").addClass("fm_unsellabel");
     });
 
@@ -184,34 +178,26 @@ $(document).ready(function() {
             $(".ddir > div").each(function() {
                 if ($(this).attr("class") == "fm_sellabel") {
                     var fname = $(this).attr("id");
-                    $.ajax({
-                        type: "POST",
-                        url: 'rmdirs',
-                        data: "dir=" + encodeURIComponent(fname),
-                        success: function(res) {
+                    $.ajax({ type: "POST", url: 'rmdirs', data: "dir=" + encodeURIComponent(fname) })
+                        .done(function(res) {
                             var dataSource = treeview.dataSource;
                             var dataItem = dataSource.get(res);
                             treeview.remove(treeview.findByUid(dataItem.uid));
 
                             $(".fm_sellabel").parent().fadeOut("fast");
                             $(".fm_sellabel").parent().removeClass("fm_sellabel");
-                        }
-                    });
+                        })
                 }
             });
 
             $(".dfile > div").each(function() {
                 if ($(this).attr("class") == "fm_sellabel") {
                     var fname = $(this).attr("id");
-                    $.ajax({
-                        type: "POST",
-                        url: 'rmfiles',
-                        data: "file=" + encodeURIComponent(fname),
-                        success: function(res) {
+                    $.ajax({ type: "POST", url: 'rmfiles', data: "file=" + encodeURIComponent(fname) })
+                        .done(function(res) {
                             $(".fm_sellabel").parent().fadeOut("fast");
                             $(".fm_sellabel").removeClass("fm_sellabel");
-                        }
-                    });
+                        })
                 }
             });
         }
@@ -234,70 +220,47 @@ $(document).ready(function() {
             }
         });
 
-        $.ajax({
-            type: "POST",
-            url: "copy",
-            data: selfiles,
-            dataType: "JSON",
-            success: function(res) {
+        $.ajax({ type: "POST", url: "copy", data: selfiles, dataType: "JSON" })
+            .done(function(res) {
                 $.each(res, function(key, value) {
                     if (key == "buffer")
                         $("#buffer").html(value);
                     if (key == "count")
                         $("#buffer_count").html("("+value+")");
                 });
-            }
-        });
+            })
     }
 
     function pastFiles() {
-        $.ajax({
-            type: "POST",
-            url: "past",
-            dataType: "JSON",
-            success: function(res) {
+        $.ajax({ type: "POST", url: "past", dataType: "JSON" })
+            .done(function(res) {
                 $("#buffer").html("");
                 $("#buffer_count").html("(0)");
                 $.each(res, function(key, value) {
                     $("#fm_uploadDir").append(value);
                 });
-            },
-            error: function(res) {
+            })
+            .fail(function(res) {
                 alert(res.responseText);
-            }
-        });
+            })
     }
 
     $(".view").click(function(){
-        $.ajax({
-            type: "POST",
-            url: "view",
-            data: "type=" + $(this).attr("data-id"),
-            dataType: "JSON",
-            success: function(res) {
-                location.reload();
-            }
-        });
+        $.ajax({ type: "POST", url: "view", data: "type=" + $(this).attr("data-id"), dataType: "JSON" })
+            .done(function(res) { location.reload(); })
     });
 
     $(".sort").click(function(){
-        $.ajax({
-            type: "POST",
-            url: "sort",
-            data: "type=" + $(this).attr("data-id"),
-            dataType: "JSON",
-            success: function(res) {
-                location.reload();
-            }
-        });
+        $.ajax({ type: "POST", url: "sort", data: "type=" + $(this).attr("data-id"), dataType: "JSON" })
+            .done(function(res) { location.reload(); })
     });
 
-    $(".ddir").live("dblclick", function(){
+    $("#structure").on("dblclick", ".ddir", function(){
         var splitter = $("#splitter").data("kendoSplitter");
         splitter.ajaxRequest("#structure", "chdir", { id: $(this).attr("id") });
     });
 
-    $(".dfile").live("dblclick", function(){
+    $("#structure").on("dblclick", ".dfile", function(){
         $("#fileRes").data("kendoWindow").open();
         $("#fileRes").data("kendoWindow").center();
 

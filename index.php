@@ -48,7 +48,7 @@ $app["root_tree"] = array(0 => array(
     "id" => md5($app["upload"]),
     "path" => $app["upload"],
     "expanded" => true,
-    "hasChildren" => $app["files"]->hasChildren($app["upload"]),
+    "hasChildren" => true,
     "spriteCssClass" => "rootfolder"
 ));
 
