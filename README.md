@@ -21,7 +21,7 @@ mkdir upload/_thumb
 
 chown -R www-data:www-data upload 
 
-chmod 770 update
+chmod 770 upload
 
 ## Demo
 
