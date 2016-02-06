@@ -1,6 +1,8 @@
 fm-silex-kendo
 ==============
 
+### WARINING: MOVED https://github.com/dsamotoy/fm-silex-kenju
+
 File manager - Silex + Kendo UI
 
 ## Install:
