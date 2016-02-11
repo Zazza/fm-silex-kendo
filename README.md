@@ -30,7 +30,7 @@ Development (more tests and feedback needed)
 
 ## Install:
 ```sh
-$ git clone https://github.com/dsamotoy/fm-silex-kenju.git
+$ git clone https://github.com/Zazza/fm-silex-kendo.git
 $ cd fm-silex-kenju/app/
 $ curl -s https://getcomposer.org/installer | php
 $ php composer.phar install
