@@ -1,0 +1,181 @@
+<div class="modal filemanager-modal-window" id="uploader-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                <input name="files" id="files" type="file" />
+
+                <div class="uploading-file-list"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="uploader-window-clear" class="k-button">Clear</button>
+            <button type="button" id="uploader-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal filemanager-modal-window" id="downloader-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                <div class="download-file-list"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="download-window-clear" class="k-button">Clear</button>
+            <button type="button" id="download-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal filemanager-modal-window" id="configWin">
+    <div id="tabstrip">
+        <ul>
+            <li class="k-state-active">Settings</li>
+            <li>About</li>
+        </ul>
+
+        <div>
+            <div style="overflow: hidden; margin-bottom: 3px;">
+                Preview width: <span style="float: right;">{{ param.pre_width }}px.</span>
+            </div>
+            <div style="overflow: hidden; margin-bottom: 3px;">
+                Preview height: <span style="float: right;">{{ param.pre_height }}px.</span>
+            </div>
+            <div style="overflow: hidden; margin-bottom: 3px;">
+                Preview quality: <span style="float: right;">{{ param.quality }}%</span>
+            </div>
+            <div style="overflow: hidden; margin-bottom: 3px;">
+                Preview background: <span style="float: right;">{{ param.rgb }}</span>
+            </div>
+        </div>
+
+
+        <div>
+            <h4>File manager </h4>
+
+            <p>File manager (Silex + Kendo UI)</p>
+
+            <p>Github: <a href="https://github.com/Zazza/fm-silex-kendo">https://github.com/Zazza/fm-silex-kendo</a></p>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-kendo-template" id="breadcrubmPathFirstTemplate">
+    <li>
+        <a style="cursor: pointer;" class="breadcrumb-path-li" data-id="/">
+            <span class="fa fa-home"></span>
+        </a>
+    </li>
+</script>
+<script type="text/x-kendo-template" id="breadcrubmPathTemplate">
+    <li>
+        <a style="cursor: pointer;" class="breadcrumb-path-li" data-id="#: id #">#: name #</a>
+    </li>
+</script>
+
+<div class="modal filemanager-modal-window" id="new-folder-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                <input type="text" class="k-textbox" id="new-folder-window-textbox" value="" style="width: 100%;" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="new-folder-confirm" class="k-button">Ok</button>
+            <button type="button" id="new-folder-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal filemanager-modal-window" id="delete-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                Delete?
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="delete-confirm" class="k-button">Ok</button>
+            <button type="button" id="delete-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal filemanager-modal-window" id="rename-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                <input type="text" class="k-textbox" id="rename-window-textbox" value="" style="width: 100%;" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="rename-confirm" class="k-button">Ok</button>
+            <button type="button" id="rename-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal filemanager-modal-window" id="copy-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                <div id="copy-tree" style="height: 200px; border: 1px solid black; overflow: hidden; position: relative;"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="copy-confirm" class="k-button">Ok</button>
+            <button type="button" id="copy-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal filemanager-modal-window" id="move-window">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="form-content">
+                <div id="move-tree" style="height: 200px; border: 1px solid black; overflow: hidden; position: relative;"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="move-confirm" class="k-button">Ok</button>
+            <button type="button" id="move-window-close" class="k-button">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/x-kendo-template" id="fileUploadTemplate">
+    <div class="upload-file-progress" title="#: name #" data-path="#: path #">
+        <div class="upload-status-progress"></div>
+        <div style="position: relative; overflow: hidden; margin: 4px 10px;">
+            <div class="pull-left upload-file-text">
+                #: name #
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-xs btn-danger k-upload-action uploaderRemove" data-id="#: name #" type="button" title="Stop">
+                    <i class="fa fa-stop"></i> Stop
+                </a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="fileDownloadTemplate">
+    <div class="download-file-progress" title="#: name #">
+        <div class="download-status-progress"></div>
+        <div style="position: relative; overflow: hidden; margin: 4px 10px;">
+            <div class="pull-left download-file-text">
+                #: name #
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-xs btn-danger k-upload-action downloadRemove" data-id="#: name #" type="button" title="Stop">
+                    <i class="fa fa-stop"></i> Stop
+                </a>
+            </div>
+        </div>
+    </div>
+</script>

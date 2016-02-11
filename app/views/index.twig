@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File manager</title>
+    <link href="assets/styles/main.css" rel="stylesheet" />
+    <link href="scroll/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+</head>
+<body style="background-color: #49c;">
+
+    <div class="window window-fm" id="file-manager">
+        <div class="main-menu main-menu_2d_down">
+            <li class="main-menu__btn main-menu__btn-download">
+                <span class="fa fa-download"></span> Download
+            </li>
+            <li class="main-menu__btn main-menu__btn-open">
+                <span class="fa fa-file-o"></span> Open
+            </li>
+            <li class="main-menu__btn main-menu__btn-load">
+                <span class="fa fa-upload"></span> Upload
+            </li>
+            <li class="main-menu__btn main-menu__btn-new-folder">
+                <span class="fa fa-folder"></span> New folder
+            </li>
+            <li class="main-menu__btn main-menu__btn-delete">
+                <span class="fa fa-remove"></span> Delete
+            </li>
+            <li class="main-menu__btn main-menu__btn-rename">
+                <span class="fa fa-edit"></span> Rename
+            </li>
+            <li class="main-menu__btn main-menu__btn-copy">
+                <span class="fa fa-copy"></span> Copy
+            </li>
+            <li class="main-menu__btn main-menu__btn-move">
+                <span class="fa fa-mail-forward"></span> Move
+            </li>
+            <li class="main-menu__btn main-menu__btn-about">
+                <span class="fa fa-question-circle"></span> About
+            </li>
+        </div>
+
+        <div style="position: absolute; top: 27px; bottom: 29px; left: 0; right: 0;">
+            <div class="splitter" style="height: 100%;">
+                <div class="splitter-treeview"></div>
+                <div class="splitter-content" style="border: 0;">
+                    <div class="main-menu main-menu_2d splitter-content-topmenu" style="overflow: hidden;">
+                        <ol class="breadcrumb breadcrumb-path" style="float: left;"></ol>
+                        <li class="splitter-content-topmenu__go_up" style="float: right;">
+                            ..
+                        </li>
+                    </div>
+
+                    <div class="splitter-content-structure"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu main-menu_2d splitter-content-bottommenu" style="position: absolute; bottom: 0; left: 0; right: 0;">
+            <li>
+                <span class="kendo-menu-label">Size:</span>
+                <span class="splitter-content-bottommenu__summarySize"></span>
+            </li>
+            <li>
+                <span class="kendo-menu-label">Folders:</span>
+                <span class="splitter-content-bottommenu__numDirs"></span>
+            </li>
+            <li>
+                <span class="kendo-menu-label">Files:</span>
+                <span class="splitter-content-bottommenu__numFiles"></span>
+            </li>
+
+            <li data-id="icon" class="splitter-content-bottommenu__view" style="float: right; border-right: 0 none; ">
+                <span class="fa fa-list-alt"></span> Icons
+            </li>
+            <li data-id="list" class="splitter-content-bottommenu__view" style="float: right;">
+                <span class="fa fa-list-ul"></span> List
+            </li>
+
+            <li data-id="name" class="splitter-content-bottommenu__sort" style="float: right;">
+                <span class="fa fa-sort-alpha-asc"></span> Name
+            </li>
+            <li data-id="date" class="splitter-content-bottommenu__sort" style="float: right;">
+                <span class="fa fa-sort-numeric-asc"></span> Date
+            </li>
+            <li data-id="size" class="splitter-content-bottommenu__sort" style="float: right;">
+                <span class="fa fa-sort-amount-asc"></span> Size
+            </li>
+        </div>
+    </div>
+
+    {% include "template-nodes.twig" %}
+    {% include "windows.twig" %}
+
+    <script src="Kenju/js/jquery.min.js"></script>
+    <script src="Kenju/js/kendo.web.min.js"></script>
+    <script src="js/js.cookie.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/selecter.js"></script>
+
+    <script src="js/api.js"></script>
+    <script src="js/files.js"></script>
+    <script src="js/view.js"></script>
+
+    <script src="js/action/upload.js"></script>
+    <script src="js/action/newFolder.js"></script>
+    <script src="js/action/delete.js"></script>
+    <script src="js/action/rename.js"></script>
+    <script src="js/action/download.js"></script>
+    <script src="js/action/open.js"></script>
+    <script src="js/action/copy.js"></script>
+    <script src="js/action/move.js"></script>
+
+    <script src="scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+</body>
+</html>

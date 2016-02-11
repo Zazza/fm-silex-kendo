@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/vhosts/fm-silex-kenju/app/src/Fm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/nv.d3.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="index.html">/home/vhosts/fm-silex-kenju/app/src/Fm</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Library/Archive.php.html#10">Archive</a></td><td class="text-right">45%</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#13">ImagePreview</a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#13">File</a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#14">Folder</a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="Node/Node.php.html#12">Node</a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Node/Node/Folder.php.html#14">Folder</a></td><td class="text-right">28</td></tr>
+       <tr><td><a href="Library/Archive.php.html#10">Archive</a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#13">ImagePreview</a></td><td class="text-right">18</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#13">File</a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="Node/Node.php.html#12">Node</a></td><td class="text-right">12</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Library/ImagePreview.php.html#89"><abbr title="ImagePreview::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Node/Node.php.html#61"><abbr title="Node::getRelativePath">getRelativePath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#84"><abbr title="ImagePreview::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#129"><abbr title="Folder::move">move</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#69"><abbr title="ImagePreview::getPath">getPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Library/Archive.php.html#12"><abbr title="Archive::zip">zip</abbr></a></td><td class="text-right">45%</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#41"><abbr title="File::remove">remove</abbr></a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#69"><abbr title="File::move">move</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#115"><abbr title="Folder::my_copy_all">my_copy_all</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#90"><abbr title="File::rename">rename</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#141"><abbr title="Folder::rename">rename</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Library/Structure.php.html#42"><abbr title="Structure::fileUpload">fileUpload</abbr></a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#56"><abbr title="File::copy">copy</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Node/Node.php.html#35"><abbr title="Node::genCopyName">genCopyName</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Library/Structure.php.html#62"><abbr title="Structure::createFolder">createFolder</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#15"><abbr title="ImagePreview::create">create</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Library/Archive.php.html#12"><abbr title="Archive::zip">zip</abbr></a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#15"><abbr title="ImagePreview::create">create</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#129"><abbr title="Folder::move">move</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Library/ImagePreview.php.html#69"><abbr title="ImagePreview::getPath">getPath</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#115"><abbr title="Folder::my_copy_all">my_copy_all</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#69"><abbr title="File::move">move</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#41"><abbr title="File::remove">remove</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Library/Structure.php.html#42"><abbr title="Structure::fileUpload">fileUpload</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Node/Node.php.html#35"><abbr title="Node::genCopyName">genCopyName</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Node/Node/Folder.php.html#141"><abbr title="Folder::rename">rename</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#90"><abbr title="File::rename">rename</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Node/Node/File.php.html#56"><abbr title="File::copy">copy</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Library/Structure.php.html#62"><abbr title="Structure::createFolder">createFolder</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 3.0.1</a> using <a href="http://php.net/" target="_top">PHP 5.6.16</a> and <a href="http://phpunit.de/">PHPUnit 5.0.8</a> at Wed Feb 3 8:31:34 MSK 2016.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/holder.min.js" type="text/javascript"></script>
+  <script src="js/d3.min.js" type="text/javascript"></script>
+  <script src="js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,1,0,0,2,2,1,2], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([5,0,0,0,0,1,1,1,4,4,2,29], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(key, y, e, graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,0,"<a href=\"Exception\/ExceptionUpload.php.html#4\">ExceptionUpload<\/a>"],[45.454545454545,10,"<a href=\"Library\/Archive.php.html#10\">Archive<\/a>"],[100,11,"<a href=\"Library\/Container.php.html#10\">Container<\/a>"],[71.428571428571,14,"<a href=\"Library\/ImagePreview.php.html#13\">ImagePreview<\/a>"],[92.982456140351,20,"<a href=\"Library\/Structure.php.html#13\">Structure<\/a>"],[85,12,"<a href=\"Node\/Node.php.html#12\">Node<\/a>"],[78.048780487805,13,"<a href=\"Node\/Node\/File.php.html#13\">File<\/a>"],[84.126984126984,26,"<a href=\"Node\/Node\/Folder.php.html#14\">Folder<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(key, y, e, graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[45.454545454545,10,"<a href=\"Library\/Archive.php.html#12\">Archive::zip<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#19\">Container::setConfiguration<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#25\">Container::setThumbConfig<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#33\">Container::getUploaderFolder<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#38\">Container::getImagePreviewFolder<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#43\">Container::getWidth<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#48\">Container::getHeight<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#53\">Container::getRgb<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#58\">Container::getQuality<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#63\">Container::clearFolderPath<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#76\">Container::anonymous function<\/a>"],[100,1,"<a href=\"Library\/Container.php.html#73\">Container::clearFilename<\/a>"],[88.235294117647,10,"<a href=\"Library\/ImagePreview.php.html#15\">ImagePreview::create<\/a>"],[0,2,"<a href=\"Library\/ImagePreview.php.html#69\">ImagePreview::getPath<\/a>"],[0,1,"<a href=\"Library\/ImagePreview.php.html#84\">ImagePreview::get<\/a>"],[0,1,"<a href=\"Library\/ImagePreview.php.html#89\">ImagePreview::remove<\/a>"],[100,3,"<a href=\"Library\/Structure.php.html#18\">Structure::getNode<\/a>"],[77.777777777778,3,"<a href=\"Library\/Structure.php.html#42\">Structure::fileUpload<\/a>"],[83.333333333333,2,"<a href=\"Library\/Structure.php.html#62\">Structure::createFolder<\/a>"],[100,1,"<a href=\"Library\/Structure.php.html#75\">Structure::getRoot<\/a>"],[100,6,"<a href=\"Library\/Structure.php.html#82\">Structure::getFolders<\/a>"],[91.666666666667,5,"<a href=\"Library\/Structure.php.html#108\">Structure::getNodes<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#20\">Node::get<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#21\">Node::remove<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#22\">Node::copy<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#23\">Node::move<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#24\">Node::rename<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#26\">Node::__construct<\/a>"],[83.333333333333,3,"<a href=\"Node\/Node.php.html#35\">Node::genCopyName<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#56\">Node::getAbsolutePath<\/a>"],[0,1,"<a href=\"Node\/Node.php.html#61\">Node::getRelativePath<\/a>"],[100,1,"<a href=\"Node\/Node.php.html#66\">Node::getRelativePathWithoutName<\/a>"],[100,1,"<a href=\"Node\/Node\/File.php.html#18\">File::__construct<\/a>"],[100,1,"<a href=\"Node\/Node\/File.php.html#30\">File::get<\/a>"],[57.142857142857,3,"<a href=\"Node\/Node\/File.php.html#41\">File::remove<\/a>"],[80,2,"<a href=\"Node\/Node\/File.php.html#56\">File::copy<\/a>"],[66.666666666667,4,"<a href=\"Node\/Node\/File.php.html#69\">File::move<\/a>"],[75,2,"<a href=\"Node\/Node\/File.php.html#90\">File::rename<\/a>"],[100,2,"<a href=\"Node\/Node\/Folder.php.html#18\">Folder::__construct<\/a>"],[100,1,"<a href=\"Node\/Node\/Folder.php.html#34\">Folder::toTreeview<\/a>"],[100,1,"<a href=\"Node\/Node\/Folder.php.html#44\">Folder::get<\/a>"],[90.909090909091,6,"<a href=\"Node\/Node\/Folder.php.html#54\">Folder::remove<\/a>"],[100,1,"<a href=\"Node\/Node\/Folder.php.html#110\">Folder::copy<\/a>"],[72.727272727273,5,"<a href=\"Node\/Node\/Folder.php.html#115\">Folder::my_copy_all<\/a>"],[0,2,"<a href=\"Node\/Node\/Folder.php.html#129\">Folder::move<\/a>"],[75,2,"<a href=\"Node\/Node\/Folder.php.html#141\">Folder::rename<\/a>"],[100,6,"<a href=\"Node\/Node\/Folder.php.html#151\">Folder::hasChildren<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

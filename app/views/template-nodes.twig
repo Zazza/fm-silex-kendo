@@ -1,0 +1,81 @@
+<!-- GRID TEMPLATES -->
+<script type="text/x-kendo-template" id="folderGridTemplate">
+    <div title="#: name #" data-name="#: name #" class="filemanager_node filemanager_node_icon filemanager_folder filemanager_unselect_node">
+        <div class="fm_pre">
+            <i class="mx-fs-folder #: ico #" alt="[DIR]"></i>
+        </div>
+        <div class="fname">
+            <a class="node-open-link">
+                <i class="fa fa-folder"></i>&nbsp;<span>#: shortname #</span>
+            </a>
+        </div>
+        <div class="file_icon_size">&nbsp;</div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="fileGridTemplate">
+    <div title="#: name #" data-name="#: name #" class="filemanager_node filemanager_node_icon filemanager_unselect_node">
+        <div class="fm_pre">
+            <i class="mx-fs-file #: ico #" alt="[FILE]"></i>
+        </div>
+        <div class="fname">
+            <a class="node-open-link">
+                <i class="fa fa-file"></i>&nbsp;<span>#: shortname #</span>
+            </a>
+        </div>
+        <div class="file_icon_size">#: size #</div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="imageGridTemplate">
+    <div title="#: name #" data-name="#: name #" class="filemanager_node filemanager_node_icon filemanager_unselect_node">
+        <div class="fm_pre">
+            <img class="file-img-preview" src="/getThumb/?id=#: path #" alt="[FILE]" />
+        </div>
+        <div class="fname">
+            <a class="node-open-link">
+                <i class="fa fa-image"></i>&nbsp;<span>#: shortname #</span>
+            </a>
+        </div>
+        <div class="file_icon_size">#: size #</div>
+    </div>
+</script>
+<!-- END GRID TEMPLATES -->
+
+<!-- LIST TEMPLATES -->
+<script type="text/x-kendo-template" id="folderListTemplate">
+    <div title="#: name #" data-name="#: name #" class="filemanager_node filemanager_node_li filemanager_folder filemanager_unselect_node">
+        <div class="pull-left">
+            <div class="filemanager_node_li_icon">
+                <i class="#: ico #"></i>
+            </div>
+            <div class="filemanager_node_li_name">
+                <a class="node-open-link"><span>#: name #</span></a>
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <span class="filemanager_node_li_date">#: date #</span>
+            <span class="filemanager_node_li_size"></span>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="fileListTemplate">
+    <div title="#: name #" data-name="#: name #" class="filemanager_node filemanager_node_li filemanager_unselect_node">
+        <div class="pull-left">
+            <div class="filemanager_node_li_icon">
+                <i class="#: ico #"></i>
+            </div>
+            <div class="filemanager_node_li_name">
+                <a class="node-open-link"><span>#: name #</span></a>
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <span class="filemanager_node_li_date">#: date #</span>
+            <span class="filemanager_node_li_size">#: size #</span>
+        </div>
+    </div>
+</script>
+<!-- END LIST TEMPLATES -->
